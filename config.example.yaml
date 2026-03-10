@@ -1,12 +1,12 @@
 backup-dir: /vm-backups # Directory where backups will be stored.
 machines:
   # Configuration per virtual machine. Key can be any identifier, but 'name' should match the VM name in libvirt.
-  vm1:
-    name: debian-vm # Domain name of the vm in libvirt
-    schedule: '0 0 * * *' # Crontab schedule for when the backup runs
-    keep: 4 # How many backups are kept when pruning
-    disks: # Disks to backup from the domain
-      - name: vda # Name of the disk in the vm
-        type: file # For now this only supports 'file' type
-      - name: vdb
-        type: file
+  # vm1:
+  #   name: debian-vm # Domain name of the vm in libvirt
+  #   schedule: '0 0 * * *' # Crontab schedule for when the backup runs
+  #   keep: 4 # How many backups are kept when pruning
+  #   disks: # Disks to backup from the domain
+  #     - name: vda # Name of the disk in the vm
+  #       type: file # For now this only supports 'file' type
+  #     - name: vdb
+  #       type: file

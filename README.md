@@ -24,9 +24,19 @@ First backup of the day is named as `/backupdir/<vm-name>/dd-mm-yyyy_disk.qcow2`
 
 ## Installation
 
+### Install script
+
+Install using the [install.sh](./install.sh) script.
+
+```bash
+# Coming soon
+```
+
+### Manual
+
 For now here is the vague installation instructions. Better will come when there is better installation method and publication pipeline.
 
-### Create config file
+#### Create config file
 
 Config is read from `/etc/libvirt-backup/config.yaml` by default, but this can be changed with `-c` flag. Create the config file and use the [config.example.yaml](./config.example.yaml) as a base.
 
@@ -36,11 +46,11 @@ sudo touch /etc/libvirt-backup/config.yaml
 # Fill in the config
 ```
 
-### Decide the backup directory
+#### Decide the backup directory
 
 In the config file `backup-dir` key defines the directory under which all of the backups will be stored. This can be any directory you like, but be mindful of the fact that the directory will be chowned to `libvirt-qemu:kvm` and if it does not exist, it will be created.
 
-### Add the binary
+#### Add the binary
 
 Add the binary to `/usr/local/sbin`.
 
@@ -50,6 +60,6 @@ Remember to allow execution.
 sudo chmod 700 /usr/local/sbin/libvirt-backup
 ```
 
-### Create systemd service
+#### Create systemd service
 
 This program is meant to be run as a systemd service. Create a service file for it. You can use the provided [libvirt-backup.service](./libvirt-backup.service).
