@@ -1,0 +1,16 @@
+[Unit]
+Description=libvirt Backup Service
+After=network.target libvirtd.service
+Wants=libvirtd.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/libvirt-backup
+Restart=on-failure
+RestartSec=10
+User=root
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
