@@ -18,6 +18,12 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
+      - name: check version
+        run: |
+          version=$(grep -oP 'VERSION\s*=\s*"\K[^"]+' main.go)
+          echo "libvirt-backup version: $version"
+          echo "tag version: $tag"
+          [[ "v$version" == $tag ]] || exit 1
       - name: setup Golang
         uses: actions/setup-go@v6
         with:
@@ -31,7 +37,7 @@ jobs:
           if [ ! -e *.mod ]; then
             go mod init ${GITHUB_REPOSITORY}
           fi
-          GOOS=linux GOARCH=amd64 go build -ldflags "-X main.Version=${GITHUB_REF_NAME} -X main.BuiltBy=github-actions" -o "libvirt-backup$(go env GOOS)-$(go env GOARCH)"
+          GOOS=linux GOARCH=amd64 go build -ldflags "-X main.Version=${GITHUB_REF_NAME} -X main.BuiltBy=github-actions" -o "libvirt-backup_$(go env GOOS)-$(go env GOARCH)"
           execFile=$(find . -type f -executable -name 'libvirt-backup*')
           gh release create $tag \
             --repo="$GITHUB_REPOSITORY" \
