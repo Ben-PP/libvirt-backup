@@ -36,9 +36,21 @@ sudo curl -o- https://raw.githubusercontent.com/Ben-PP/libvirt-backup/refs/heads
 sudo curl -o- https://raw.githubusercontent.com/Ben-PP/libvirt-backup/refs/heads/main/install.sh | bash -s -- <version>
 ```
 
+### Uninstall
+
+To uninstall you can use the [uninstall.sh](./uninstall.sh) if you installed using the script or used the default locations and names for everything.
+
+```bash
+sudo curl -o- https://raw.githubusercontent.com/Ben-PP/libvirt-backup/refs/heads/main/uninstall.sh | bash
+```
+
 ### Manual
 
 These are the manual steps to get the program running. Install script should be preferred so these are not very specific instructions.
+
+## Update
+
+To update you can just run the install script again. It will leave the default config.yaml if it exists already.
 
 #### Create config file
 
