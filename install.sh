@@ -5,10 +5,7 @@ if [[ ! $EUID -eq 0 ]]; then
     exit 1
 fi
 
-if ! command -v curl >/dev/null 2>&1; then
-    echo "Error: curl is not installed"
-    exit 1
-fi
+sudo apt install -y curl libvirt-dev
 
 
 VERSION="${1:-latest}"
@@ -23,6 +20,12 @@ cd /var/tmp
 
 if [[ "$VERSION" == "latest" ]]; then
     VERSION=$(curl -sL https://api.github.com/repos/Ben-PP/libvirt-backup/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
+else
+    # Check if the specified version exists
+    if ! curl -sL https://api.github.com/repos/Ben-PP/libvirt-backup/releases/tags/$VERSION | grep -q '"tag_name": "'$VERSION'"'; then
+        echo "Version $VERSION not found"
+        exit 3
+    fi
 fi
 
 # Download and set up the binary

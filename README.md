@@ -29,12 +29,16 @@ First backup of the day is named as `/backupdir/<vm-name>/dd-mm-yyyy_disk.qcow2`
 Install using the [install.sh](./install.sh) script.
 
 ```bash
-# Coming soon
+# Install latest verstion
+sudo curl -o- https://raw.githubusercontent.com/Ben-PP/libvirt-backup/refs/heads/main/install.sh | bash
+
+# Or specific version (check releases for available versions)
+sudo curl -o- https://raw.githubusercontent.com/Ben-PP/libvirt-backup/refs/heads/main/install.sh | bash -s -- <version>
 ```
 
 ### Manual
 
-For now here is the vague installation instructions. Better will come when there is better installation method and publication pipeline.
+These are the manual steps to get the program running. Install script should be preferred so these are not very specific instructions.
 
 #### Create config file
 
